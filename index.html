@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buzón Astro Soft</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #FFD60A;       /* Amarillo USACH */
+            --dark: #222222;          
+            --bg-card: #ffffff;
+            --text-main: #333;
+            --text-light: #666;
+            --border-radius: 20px;    /* Más redondito */
+            
+            /* NUEVA PALETA DE COLORES SOFT */
+            --color-idea: #7c4dff;    /* Lavanda Profundo */
+            --bg-idea: #f2efff;       
+            
+            --color-bug: #ff7043;     /* Coral */
+            --bg-bug: #fff1ed;
+
+            --color-done: #00bfa5;    /* Verde Menta */
+            --bg-done: #e0f7f4;
+
+            --color-love: #fbc02d;    /* Amarillo Dorado */
+            --bg-love: #fffde7;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: transparent;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            color: var(--text-main);
+        }
+
+        .feedback-container {
+            max-width: 650px;
+            width: 100%;
+        }
+
+        /* --- CABECERA --- */
+        .header-box {
+            background: var(--bg-card);
+            border: 1px solid #eee;
+            padding: 30px;
+            border-radius: var(--border-radius);
+            margin-bottom: 30px;
+            text-align: center;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.04);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Decoración sutil amarilla arriba */
+        .header-box::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 6px;
+            background: var(--primary);
+        }
+
+        .header-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.6rem;
+            margin: 10px 0 10px 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--dark);
+        }
+
+        .header-desc {
+            font-size: 0.95rem;
+            color: var(--text-light);
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+
+        /* BOTÓN PRINCIPAL */
+        .btn-suggest {
+            background: var(--dark);
+            color: var(--primary);
+            text-decoration: none;
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-family: 'Oswald', sans-serif;
+            font-weight: 500;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .btn-suggest:hover {
+            transform: translateY(-2px);
+            background: black;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        }
+
+        /* --- TARJETAS (FEED) --- */
+        .idea-card {
+            background: var(--bg-card);
+            border: 1px solid #f0f0f0;
+            border-radius: var(--border-radius);
+            padding: 22px;
+            margin-bottom: 18px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            gap: 18px;
+            align-items: flex-start;
+        }
+
+        .idea-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            border-color: transparent;
+        }
+
+        /* Icono Redondo Suave */
+        .status-icon {
+            min-width: 42px;
+            height: 42px;
+            border-radius: 12px; /* Cuadrado redondeado moderno */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .content-box { flex-grow: 1; }
+
+        .meta-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .category-tag {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 5px 10px;
+            border-radius: 6px;
+        }
+
+        /* COLORES ELEGANTES */
+        /* Ideas (Lavanda) */
+        .style-idea .status-icon { background: var(--bg-idea); color: var(--color-idea); }
+        .style-idea .category-tag { background: var(--bg-idea); color: var(--color-idea); }
+
+        /* Errores (Coral) */
+        .style-bug .status-icon { background: var(--bg-bug); color: var(--color-bug); }
+        .style-bug .category-tag { background: var(--bg-bug); color: var(--color-bug); }
+
+        /* Listo (Menta) */
+        .style-done .status-icon { background: var(--bg-done); color: var(--color-done); }
+        .style-done .category-tag { background: var(--bg-done); color: var(--color-done); }
+
+        /* Cariño (Amarillo) */
+        .style-love .status-icon { background: var(--bg-love); color: var(--color-love); }
+        .style-love .category-tag { background: var(--bg-love); color: var(--color-love); }
+
+
+        .idea-text {
+            font-size: 0.95rem;
+            color: #444;
+            line-height: 1.5;
+            font-weight: 400;
+        }
+
+        .dev-reply {
+            margin-top: 15px;
+            padding: 12px;
+            background: #fafafa;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            color: #555;
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+        }
+
+        .dev-avatar {
+            font-size: 1rem;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="feedback-container">
+
+    <div class="header-box">
+        <h2 class="header-title">🚀 Roadmap & Sugerencias</h2>
+        <p class="header-desc">
+            Esta página está hecha con cariño y esfuerzo. Ayúdame a mejorarla enviando tus ideas, avisos de errores o simplemente buena onda. Todo es anónimo.
+        </p>
+        <a href="https://forms.google.com" target="_blank" class="btn-suggest">
+            <span>💡 Enviar Aporte</span>
+        </a>
+    </div>
+
+    <div class="idea-card style-done">
+        <div class="status-icon">✅</div>
+        <div class="content-box">
+            <div class="meta-row">
+                <span class="category-tag">¡Implementado!</span>
+                <span style="font-size:0.75rem; color:#aaa;">Hace 1 día</span>
+            </div>
+            <div class="idea-text">
+                "Sería bacán tener un widget del clima para saber si hay cielo despejado para observar."
+            </div>
+            <div class="dev-reply">
+                <span class="dev-avatar">👩🏻‍💻</span>
+                <span>¡Listo! Ya agregué el widget del clima conectado a la USACH. ¡Gracias por la idea!</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="idea-card style-bug">
+        <div class="status-icon">🔧</div>
+        <div class="content-box">
+            <div class="meta-row">
+                <span class="category-tag">Reporte de Error</span>
+                <span style="font-size:0.75rem; color:#aaa;">Hace 3 horas</span>
+            </div>
+            <div class="idea-text">
+                "El botón de 'Descargar Syllabus' en el curso de Cálculo I no funciona, me tira error 404."
+            </div>
+            <div class="dev-reply">
+                <span class="dev-avatar">👩🏻‍💻</span>
+                <span>¡Ups! Gracias por avisar. Lo reviso hoy mismo en la tarde.</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="idea-card style-idea">
+        <div class="status-icon">✨</div>
+        <div class="content-box">
+            <div class="meta-row">
+                <span class="category-tag">Sugerencia</span>
+                <span style="font-size:0.75rem; color:#aaa;">Ayer</span>
+            </div>
+            <div class="idea-text">
+                "Podrías poner una sección con los correos de los profes ayudantes también, no solo los titulares."
+            </div>
+        </div>
+    </div>
+
+    <div class="idea-card style-love">
+        <div class="status-icon">💛</div>
+        <div class="content-box">
+            <div class="meta-row">
+                <span class="category-tag">Buena Onda</span>
+                <span style="font-size:0.75rem; color:#aaa;">Hace 2 días</span>
+            </div>
+            <div class="idea-text">
+                "Te está quedando súper linda la página, gracias por el esfuerzo compañera!!"
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

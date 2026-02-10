@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Buzón Astro Soft</title>
-    <link href="https://docs.google.com/forms/d/e/1FAIpQLSdKKx2kR7T1DXDvn_PoYKBRZ-_kgIJOQqB9KJThuzxA_ESYFA/viewform?usp=publish-editor" rel="stylesheet">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    
     <style>
         :root {
             --primary: #FFD60A;       /* Amarillo USACH */
@@ -12,7 +14,7 @@
             --bg-card: #ffffff;
             --text-main: #333;
             --text-light: #666;
-            --border-radius: 20px;    /* Más redondito */
+            --border-radius: 20px;
             
             /* NUEVA PALETA DE COLORES SOFT */
             --color-idea: #7c4dff;    /* Lavanda Profundo */
@@ -81,10 +83,10 @@
             line-height: 1.5;
         }
 
-        /* BOTÓN PRINCIPAL */
+        /* 3. CAMBIÉ EL COLOR DEL BOTÓN AQUÍ (YA NO ES NEGRO) */
         .btn-suggest {
-            background: var(--dark);
-            color: var(--primary);
+            background: var(--primary); /* AHORA ES AMARILLO */
+            color: var(--dark);         /* LETRA OSCURA */
             text-decoration: none;
             padding: 12px 28px;
             border-radius: 50px;
@@ -96,13 +98,13 @@
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 15px rgba(255, 214, 10, 0.3); /* Sombra amarillenta */
         }
 
         .btn-suggest:hover {
             transform: translateY(-2px);
-            background: black;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+            background: #e6c200; /* Un amarillo un poquito más oscuro al pasar el mouse */
+            box-shadow: 0 6px 20px rgba(255, 214, 10, 0.5);
         }
 
         /* --- TARJETAS (FEED) --- */
@@ -128,7 +130,7 @@
         .status-icon {
             min-width: 42px;
             height: 42px;
-            border-radius: 12px; /* Cuadrado redondeado moderno */
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -155,19 +157,15 @@
         }
 
         /* COLORES ELEGANTES */
-        /* Ideas (Lavanda) */
         .style-idea .status-icon { background: var(--bg-idea); color: var(--color-idea); }
         .style-idea .category-tag { background: var(--bg-idea); color: var(--color-idea); }
 
-        /* Errores (Coral) */
         .style-bug .status-icon { background: var(--bg-bug); color: var(--color-bug); }
         .style-bug .category-tag { background: var(--bg-bug); color: var(--color-bug); }
 
-        /* Listo (Menta) */
         .style-done .status-icon { background: var(--bg-done); color: var(--color-done); }
         .style-done .category-tag { background: var(--bg-done); color: var(--color-done); }
 
-        /* Cariño (Amarillo) */
         .style-love .status-icon { background: var(--bg-love); color: var(--color-love); }
         .style-love .category-tag { background: var(--bg-love); color: var(--color-love); }
 
@@ -206,7 +204,8 @@
         <p class="header-desc">
             Esta página está hecha con cariño y esfuerzo. Ayúdame a mejorarla enviando tus ideas, avisos de errores o simplemente buena onda. ¡Todo es anónimo, así que hazlo sin miedo! Responderé en la página para que sepan si la sugerencia está en proceso o lista.
         </p>
-        <a href="https://forms.google.com" target="_blank" class="btn-suggest">
+        
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdKKx2kR7T1DXDvn_PoYKBRZ-_kgIJOQqB9KJThuzxA_ESYFA/viewform" target="_blank" class="btn-suggest">
             <span>💡 Enviar aporte</span>
         </a>
     </div>
@@ -215,15 +214,15 @@
         <div class="status-icon">✅</div>
         <div class="content-box">
             <div class="meta-row">
-                <span class="category-tag">¡Implementado!</span>
+                <span class="category-tag">Sugerencia</span>
                 <span style="font-size:0.75rem; color:#aaa;">Hace 1 día</span>
             </div>
             <div class="idea-text">
-                "Sería bacán tener un widget del clima para saber si hay cielo despejado para observar."
+                "Sería bacán tener una sección de docentes y estén sus correos, casi siempre olvidó donde anoto los correos de mis profes."
             </div>
             <div class="dev-reply">
                 <span class="dev-avatar">📩</span>
-                <span>¡Listo! Ya agregué el widget del clima conectado a la USACH. ¡Gracias por la idea!</span>
+                <span>¡Listo! Ya agregué una sección con los nombres de los docentes y sus correos. ¡Gracias por la idea!</span>
             </div>
         </div>
     </div>
@@ -236,11 +235,11 @@
                 <span style="font-size:0.75rem; color:#aaa;">Hace 3 horas</span>
             </div>
             <div class="idea-text">
-                "El botón de 'Descargar Syllabus' en el curso de Cálculo I no funciona, me tira error 404."
+                "Cuando ocupo el celular no puedo ver nada en horario."
             </div>
             <div class="dev-reply">
                 <span class="dev-avatar">📩</span>
-                <span>¡Ups! Gracias por avisar. Lo reviso hoy mismo en la tarde.</span>
+                <span>¡Ups! Gracias por avisar. Lo revisaré pronto.</span>
             </div>
         </div>
     </div>
